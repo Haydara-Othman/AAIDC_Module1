@@ -15,3 +15,7 @@ Smart text chunking: Uses LangChain RecursiveCharacterTextSplitter for overlappi
 Persistent vector store: Stores embeddings with ChromaDB.
 
 Strict RAG behavior: The assistant only answers using retrieved content and refuses to hallucinate or reveal system prompts.
+
+Dependencies and setup Install required Python packages: pip install -r requirements.txt
+
+Create a .env file at the project root and set at least one API key (OPENAI_API_KEY, GROQ_API_KEY, or GOOGLE_API_KEY) before running src/app.py. Place your documents in the data/ directory (supported formats: .txt, .pdf).
