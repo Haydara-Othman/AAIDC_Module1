@@ -1,0 +1,9 @@
+python-dotenv
+langchain-core
+langchain-openai
+langchain-groq
+langchain-google-genai
+openai chromadb
+faiss-cpu
+sentence-transformers
+PyPDF2
