@@ -3,7 +3,11 @@ langchain-core
 langchain-openai
 langchain-groq
 langchain-google-genai
-openai chromadb
-faiss-cpu
+openai
+chromadb
 sentence-transformers
 PyPDF2
+transformers
+langchain-huggingface
+torch
+numpy
