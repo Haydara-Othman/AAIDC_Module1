@@ -80,11 +80,9 @@ class VectorDB:
         for publication in documents:
 
             chunked_publication = self.chunk_text(publication['content'] , publication['title'] ,chunck_size )        # text => list of strings for each chunk
-            # Chroma has an internal maximum batch size (e.g. 5461), so we need
-            # to send data in smaller batches if a single document produces
-            # many chunks (large PDFs, etc.).
+            
 
-            max_batch_size = 5000  # stay safely under Chroma's hard limit
+            max_batch_size = 5400  # Considerring Chroma's max batch_size for the .add function
 
             for start in range(0, len(chunked_publication), max_batch_size):
                 batch = chunked_publication[start:start + max_batch_size]
