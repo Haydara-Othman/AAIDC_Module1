@@ -34,8 +34,7 @@ class RAGAssistant:
    
 
     def __init__(self):
-        """Initialize the RAG assistant."""
-        # Initialize LLM - check for available API keys in order of preference
+        
         self.llm = self._initialize_llm()
         if not self.llm:
             raise ValueError(
@@ -58,11 +57,6 @@ class RAGAssistant:
         print("RAG Assistant initialized successfully")
 
     def _initialize_llm(self):
-        """
-        Initialize the LLM by checking for available API keys.
-        Tries OpenAI, Groq, and Google Gemini in that order.
-        """
-        # Check for OpenAI API key
         if os.getenv("OPENAI_API_KEY"):
             model_name = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
             print(f"Using OpenAI model: {model_name}")
@@ -120,12 +114,11 @@ class RAGAssistant:
 
 def main():
     
-    # try:
-        # Initialize the RAG assistant
+   
     print("Initializing RAG Assistant...")
     assistant = RAGAssistant()
 
-    # Load sample documents
+    
     print("\nLoading documents...")
     sample_docs = load_documents()
     print(f"Loaded {len(sample_docs)} sample documents")
@@ -133,26 +126,26 @@ def main():
     assistant.add_documents(sample_docs)
 
     done = False
+    try:
+        while not done:
+            question = input("Enter a question or 'quit' to exit: ")
+            if question.lower() == "quit":
+                done = True
+    
+            else:
+                
+                result = assistant.invoke(question)
+                print(result['llm_response'])
+                if result["is_sources"]:
+                    sources =result["sources"]
+                    print(f"\n Sources : {sources}")
 
-    while not done:
-        question = input("Enter a question or 'quit' to exit: ")
-        if question.lower() == "quit":
-            done = True
-
-        else:
-            
-            result = assistant.invoke(question)
-            print(result['llm_response'])
-            if result["is_sources"]:
-                sources =result["sources"]
-                print(f"\n Sources : {sources}")
-
-    # except Exception as e:
-    #     print(f"Error running RAG assistant: {e}")
-    #     print("Make sure you have set up your .env file with at least one API key:")
-    #     print("- OPENAI_API_KEY (OpenAI GPT models)")
-    #     print("- GROQ_API_KEY (Groq Llama models)")
-    #     print("- GOOGLE_API_KEY (Google Gemini models)")
+    except Exception as e:
+        print(f"Error running RAG assistant: {e}")
+        print("Make sure you have set up your .env file with at least one API key:")
+        print("- OPENAI_API_KEY (OpenAI GPT models)")
+        print("- GROQ_API_KEY (Groq Llama models)")
+        print("- GOOGLE_API_KEY (Google Gemini models)")
 
 
 if __name__ == "__main__":
