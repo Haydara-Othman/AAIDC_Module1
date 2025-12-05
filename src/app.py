@@ -88,7 +88,7 @@ class RAGAssistant:
     def add_documents(self, documents: List) :
         self.vector_db.add_documents(documents,3500)
 
-    def invoke(self, input: str, n_results: int = 3):
+    def invoke(self, input: str, n_results: int = 5):
         
         
         rc = self.vector_db.search(query = input ,n_results = n_results)
