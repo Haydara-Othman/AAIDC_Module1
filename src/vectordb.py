@@ -10,13 +10,7 @@ class VectorDB:
    
 
     def __init__(self, collection_name: str = None, embedding_model: str = None):
-        """
-        Initialize the vector database.
-
-        Args:
-            collection_name: Name of the ChromaDB collection
-            embedding_model: HuggingFace model name for embeddings
-        """
+       
         self.collection_name = collection_name or os.getenv(
             "CHROMA_COLLECTION_NAME", "rag_documents"
         )
